@@ -23,3 +23,8 @@ test.describe("Dynamic Table", () => {
     await expect(cell).toContainText("Peter Parker");
   });
 });
+
+test('test', async ({ page }) => {
+  await page.goto('https://qaplayground.dev/apps/dynamic-table/');
+  await expect(page.locator('#tbody')).toContainText('Peter Parker');
+});
