@@ -9,12 +9,16 @@ export class TagsInputPage {
   readonly title: Locator;
   readonly tags: Locator;
   readonly input: Locator;
+  readonly remaining: Locator;
+  readonly removeAllBtn: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.title = this.page.getByRole("heading", { name: "Tags", exact: true });
     this.tags = this.page.getByRole("listitem");
     this.input = this.page.getByRole("textbox");
+    this.removeAllBtn = this.page.getByRole("button", { name: "Remove All" });
+    this.remaining = this.page.locator(".details >> span");
   }
 
   async goto() {

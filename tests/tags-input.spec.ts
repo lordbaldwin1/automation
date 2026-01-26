@@ -77,9 +77,21 @@ test.describe("Tags Input Box Page", () => {
   });
 
   test("Should be able to remove all tags via 'Remove All' button", async () => {
-    const btn = pg.page.getByRole("button", { name: "Remove All" });
-    await btn.click();
+    await pg.removeAllBtn.click();
     await expect(pg.tags).toHaveCount(0);
     pg.expectTagsMatch([]);
+  });
+
+  test("Should add max number of tags", async () => {
+    const remainingCount = await pg.remaining.textContent();
+    if (!remainingCount) {
+      throw new Error("Remaining count is not present.");
+    }
+
+    const tagsToAdd = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
+    await pg.addTags(tagsToAdd);
+    await expect(pg.tags).toHaveCount(10);
+    await expect(pg.remaining).toHaveText("0");
   });
 });
