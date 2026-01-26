@@ -94,4 +94,24 @@ test.describe("Tags Input Box Page", () => {
     await expect(pg.tags).toHaveCount(10);
     await expect(pg.remaining).toHaveText("0");
   });
+
+  test("Should add max number of tags and they should be visible", async () => {
+    const tagsToAdd = ["12", "23", "34", "45", "56", "67", "78", "89"];
+
+    const input = pg.page.getByRole("textbox");
+    const tags = pg.page.getByRole("listitem");
+    const tagCount = await tags.count();
+    const currentCount = pg.page.locator(".details >> span")
+    let remainingCount = 10 - tagCount;
+
+    for (let i = 0; i < 10 - tagCount; i++) {
+      await input.fill(tagsToAdd[i]!);
+      await input.press("Enter");
+      remainingCount--;
+      await expect(tags.getByText(tagsToAdd[i]!)).toBeVisible();
+      await expect(currentCount).toHaveText(remainingCount.toString());
+    }
+
+    await expect(currentCount).toHaveText("0");
+  })
 });
