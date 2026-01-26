@@ -1,0 +1,85 @@
+import test, { expect } from "@playwright/test";
+import { TagsInputPage } from "../pages/TagsInputPage";
+
+
+test.describe("Tags Input Box Page", () => {
+  let pg: TagsInputPage;
+
+  test.beforeEach(async ({ page }) => {
+    pg = new TagsInputPage(page);
+    await pg.goto();
+  });
+
+  test("Title should be 'Tags'", async () => {
+    await expect(pg.title).toHaveText("Tags");
+  });
+
+  test("Input is present", async () => {
+    await expect(pg.input).toBeVisible();
+  });
+
+  test("Should start with 2 tags: 'node' and 'javascript'", async () => {
+    const tags = ["node", "javascript"];
+    await pg.expectTagsMatch(tags);
+  });
+
+  test("Should have no tags if 'node' and 'javascript' are removed", async () => {
+    const tagCount = await pg.tags.count();
+
+    for (let i = tagCount - 1; i >= 0; i--) {
+      const btn = pg.tags.nth(i).locator("i");
+      await btn.click();
+    }
+    await expect(pg.tags).toHaveCount(0);
+  });
+
+  test("Should be able to remove from start of tag list", async () => {
+    while ((await pg.tags.count()) > 0) {
+      await pg.tags.nth(0).locator("i").click();
+    }
+    await expect(pg.tags).toHaveCount(0);
+  });
+
+  test("Should be able to add single tag", async () => {
+    const tags = await pg.tags.allTextContents();
+    const tagToAdd = ["asd"];
+    await pg.addTags(tagToAdd);
+    tags.push(...tagToAdd);
+    await pg.expectTagsMatch(tags);
+  })
+
+  test("Should be able to add multiple tags", async () => {
+    const tags = await pg.tags.allTextContents();
+    const tagsToAdd = ["asd", "fgh", "sdf", "qwe"];
+    await pg.addTags(tagsToAdd);
+
+    tags.push(...tagsToAdd);
+    await pg.expectTagsMatch(tags);
+  });
+
+  test("Should be able to add and remove tags", async () => {
+    const initialTagCount = await pg.tags.count();
+    const initialTags = await pg.tags.allTextContents();
+    const tagsToAdd = ["asd", "sdf", "dfg"];
+    const tagsToRemove = ["sdf", "asd"];
+
+    await pg.addTags(tagsToAdd);
+    await expect(pg.tags).toHaveCount(initialTagCount + tagsToAdd.length);
+
+    for (const tag of tagsToRemove) {
+      await pg.removeTag(tag);
+    }
+
+    await expect(pg.tags).toHaveCount(initialTagCount + tagsToAdd.length - tagsToRemove.length);
+
+    initialTags.push(tagsToAdd[2]!)
+    await pg.expectTagsMatch(initialTags);
+  });
+
+  test("Should be able to remove all tags via 'Remove All' button", async () => {
+    const btn = pg.page.getByRole("button", { name: "Remove All" });
+    await btn.click();
+    await expect(pg.tags).toHaveCount(0);
+    pg.expectTagsMatch([]);
+  });
+});

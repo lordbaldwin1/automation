@@ -23,9 +23,7 @@ export class DynamicTablePage {
   }
 
   getRowByHero(name: string) {
-    return this.rows.filter({
-      has: this.page.getByText(name, { exact: true }),
-    });
+    return this.rows.filter({ hasText: name });
   }
 
   getCellInRow(row: Locator, columnName: string) {

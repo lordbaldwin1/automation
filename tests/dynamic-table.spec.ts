@@ -22,6 +22,13 @@ test.describe("Dynamic Table", () => {
     const cell = dtPage.getCellInRow(row, "Real Name");
     await expect(cell).toContainText("Peter Parker");
   });
+
+  test("another way to test for peter parker", async () => {
+    const name = "Peter Parker";
+    const row = dtPage.page.getByRole("row").filter({ hasText: "Spider-Man" });
+    const cell = row.locator("td").filter({ hasText: name });
+    await expect(cell).toHaveText(name);
+  })
 });
 
 test('test', async ({ page }) => {

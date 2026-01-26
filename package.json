@@ -9,6 +9,7 @@
     "test:report": "playwright show-report",
     "test:va": "playwright test tests/verify-account.spec.ts",
     "test:dt": "playwright test tests/dynamic-table.spec.ts",
+    "test:ti": "playwright test tests.tags-input.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
