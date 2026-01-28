@@ -108,10 +108,10 @@ test.describe("Tags Input Box Page", () => {
       await input.fill(tagsToAdd[i]!);
       await input.press("Enter");
       remainingCount--;
-      await expect(tags.getByText(tagsToAdd[i]!)).toBeVisible();
       await expect(currentCount).toHaveText(remainingCount.toString());
     }
 
+    await expect(tags).toHaveText(["node", "javascript", ...tagsToAdd])
     await expect(currentCount).toHaveText("0");
   })
 });
