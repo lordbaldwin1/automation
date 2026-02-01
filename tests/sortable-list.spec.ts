@@ -1,5 +1,5 @@
-import { test as base } from "@playwright/test";
-import { SortableListPage } from "../pages/SortableListPage"
+import { test as base, expect } from "@playwright/test";
+import { SortableListPage, topList } from "../pages/SortableListPage"
 
 
 type Fixtures = {
@@ -13,4 +13,12 @@ const test = base.extend<Fixtures>({
 
     await use(slPage);
   }
+});
+
+test.describe("Sortable List tests", async () => {
+  test("Names should be green when checked in correct order", async ({ slPage }) => {
+    await slPage.sortList();
+    await slPage.checkOrder();
+    await slPage.verifyCorrectList();
+  });
 });
