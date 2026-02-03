@@ -14,6 +14,8 @@
     "test:sl": "playwright test tests/sortable-list.spec.ts",
     "test:nt": "playwright test tests/new-tab.spec.ts",
     "test:pw": "playwright test tests/popup-window.spec.ts",
+    "test:ni": "playwright test tests/nested-iframe.spec.ts",
+    "test:sd": "playwright test tests/shadow-dom.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {

@@ -20,8 +20,10 @@ export class PopupWindowPage {
   }
 
   async openPopup(context: BrowserContext) {
-    const popupPromise = context.waitForEvent("page");
-    await this.openBtn.click();
-    return await popupPromise;
+    const [popup] = await Promise.all([
+      context.waitForEvent("page"),
+      this.openBtn.click(),
+    ]);
+    return popup;
   }
 }
