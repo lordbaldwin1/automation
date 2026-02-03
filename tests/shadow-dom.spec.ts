@@ -1,4 +1,4 @@
-import { test as base } from "@playwright/test";
+import { test as base, expect } from "@playwright/test";
 import { ShadowDOMPage } from "../pages/ShadowDOMPage"
 
 
@@ -16,7 +16,10 @@ const test = base.extend<Fixtures>({
 
 test.describe("Shadow DOM tests", () => {
   test("Should click button and assert progress is 95 percent", async ({ sd }) => {
-
+    await expect(sd.boostBtn).toBeVisible();
+    await expect(sd.progressBar).toHaveAttribute("style", "width: 5%;");
+    await sd.boostBtn.click();
+    await expect(sd.progressBar).toHaveAttribute("style", "width: 95%;");
   });
 });
 

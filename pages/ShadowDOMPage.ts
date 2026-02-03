@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 
 // Task: Shadow DOM
 
@@ -6,9 +6,13 @@ import type { Page } from "@playwright/test";
 
 export class ShadowDOMPage {
   private readonly page: Page;
+  readonly boostBtn: Locator;
+  readonly progressBar: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    this.boostBtn = this.page.getByRole("button", { name: "Boost 🚀"});
+    this.progressBar = this.page.locator(".fill");
   }
 
   async goto() {
