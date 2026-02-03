@@ -1,5 +1,5 @@
-import { test as base, expect } from "@playwright/test";
-import { SortableListPage, topList } from "../pages/SortableListPage"
+import { test as base } from "@playwright/test";
+import { SortableListPage } from "../pages/SortableListPage"
 
 
 type Fixtures = {

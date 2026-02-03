@@ -12,6 +12,8 @@
     "test:ti": "playwright test tests/tags-input.spec.ts",
     "test:mld": "playwright test tests/multi-level-dropdown.spec.ts",
     "test:sl": "playwright test tests/sortable-list.spec.ts",
+    "test:nt": "playwright test tests/new-tab.spec.ts",
+    "test:pw": "playwright test tests/popup-window.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
