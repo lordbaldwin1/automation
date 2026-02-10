@@ -1,5 +1,6 @@
 import type { Page } from "@playwright/test";
 
+// upload a file image and assert the file's name
 
 export class FileUploadPage {
   private readonly page: Page;
