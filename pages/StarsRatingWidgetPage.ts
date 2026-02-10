@@ -9,14 +9,14 @@ export class StarsRatingWidgetPage {
   readonly stars: Locator;
   readonly images: Locator;
   readonly text: Locator;
-  readonly number: Locator;
+  readonly numText: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.stars = this.page.locator(".stars > label");
-    this.images = this.page.getByRole("listitem");
+    this.images = this.page.locator(".emojis > li");
     this.text = this.page.locator(".footer > .text");
-    this.number = this.page.locator(".footer > .numb");
+    this.numText = this.page.locator(".footer > .numb");
   }
 
   async goto() {
@@ -24,10 +24,17 @@ export class StarsRatingWidgetPage {
   }
 
   async getPseudoContent(locator: Locator) {
-    return await locator.evaluate((el) => {
+    return await locator.evaluate((elmnt) => {
       // @ts-ignore window giving error but this code always runs in the browser
-      const style = window.getComputedStyle(el, "::before");
-      return style.getPropertyValue("content").replace(/['"]/g, "");
+      const style = window.getComputedStyle(elmnt, "::before");
+      return style.getPropertyValue("content");
     });
+  }
+
+  async selectStar(idx: number | null) {
+    if (idx === null) {
+      return;
+    }
+    await this.stars.nth(idx).click();
   }
 }

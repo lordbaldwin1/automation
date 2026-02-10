@@ -17,6 +17,8 @@
     "test:ni": "playwright test tests/nested-iframe.spec.ts",
     "test:sd": "playwright test tests/shadow-dom.spec.ts",
     "test:srw": "playwright test tests/stars-rating-widget.spec.ts",
+    "test:cov": "playwright test tests/covered.spec.ts",
+    "test:fu": "playwright test tests/file-upload.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
