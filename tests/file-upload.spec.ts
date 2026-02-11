@@ -11,6 +11,10 @@ const test = base.extend<Fixture>({
   fu: async ({ page }, use) => {
     const fu = new FileUploadPage(page);
     await fu.goto();
+
+    await expect(fu.uploadButton).toBeVisible();
+    await expect(fu.numFilesText).toHaveText("No File Selected");
+
     await use(fu);
   },
   filePaths: async ({ }, use) => {
@@ -26,9 +30,6 @@ const test = base.extend<Fixture>({
 
 test.describe("File Upload Page tests", () => {
   test("Should show file name after 1 file uploaded", async ({ fu, filePaths }) => {
-    await expect(fu.uploadButton).toBeVisible();
-    await expect(fu.numFilesText).toHaveText("No File Selected");
-
     const filePath = filePaths[0]!;
     await fu.uploadFiles([filePath]);
 
@@ -37,9 +38,6 @@ test.describe("File Upload Page tests", () => {
   });
 
   test("Should show file names after uploading multiple files", async ({ fu, filePaths }) => {
-    await expect(fu.uploadButton).toBeVisible();
-    await expect(fu.numFilesText).toHaveText("No File Selected");
-
     await fu.uploadFiles(filePaths);
 
     await expect(fu.files).toHaveCount(filePaths.length);

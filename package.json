@@ -19,6 +19,7 @@
     "test:srw": "playwright test tests/stars-rating-widget.spec.ts",
     "test:cov": "playwright test tests/covered.spec.ts",
     "test:fu": "playwright test tests/file-upload.spec.ts",
+    "test:fd": "playwright test tests/file-download.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
