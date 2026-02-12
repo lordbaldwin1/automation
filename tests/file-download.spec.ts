@@ -26,7 +26,7 @@ const test = base.extend<Fixture>({
 });
 
 test.describe("File Download Tests", () => {
-  test(`download file: ${EXPECTED_FILE_NAME} with size: ${EXPECTED_FILE_SIZE}kb`, async ({ fd }) => {
+  test(`download file: ${EXPECTED_FILE_NAME} with size: ${EXPECTED_FILE_SIZE} bytes`, async ({ fd }) => {
     const download = await fd.downloadFile();
     expect(download.suggestedFilename()).toMatch(EXPECTED_FILE_NAME);
 

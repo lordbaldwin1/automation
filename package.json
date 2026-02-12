@@ -20,6 +20,7 @@
     "test:cov": "playwright test tests/covered.spec.ts",
     "test:fu": "playwright test tests/file-upload.spec.ts",
     "test:fd": "playwright test tests/file-download.spec.ts",
+    "test:om": "playwright test tests/onboarding-modal.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {

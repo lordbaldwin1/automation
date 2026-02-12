@@ -23,7 +23,7 @@ export class FileUploadPage {
   async uploadFiles(filePaths: string[]) {
     const [fileChooser] = await Promise.all([
       this.page.waitForEvent("filechooser"),
-      await this.uploadButton.click(),
+      this.uploadButton.click(),
     ]);
     await fileChooser.setFiles(filePaths);
   }

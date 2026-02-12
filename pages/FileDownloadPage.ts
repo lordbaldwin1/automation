@@ -1,5 +1,4 @@
-import { expect, type Locator, type Page } from "@playwright/test";
-import path from "path";
+import { type Locator, type Page } from "@playwright/test";
 
 // download a test file and assert the file's name and size
 
@@ -30,7 +29,7 @@ export class FileDownloadPage {
   async downloadFile() {
     const [download] = await Promise.all([
       this.page.waitForEvent("download"),
-      await this.downloadLink.click(), // do we need await here?
+      this.downloadLink.click(), // do we need await here?
     ]);
 
     return download;
