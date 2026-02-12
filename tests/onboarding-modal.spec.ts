@@ -15,6 +15,7 @@ const test = base.extend<Fixture>({
     await om.goto();
     
     await expect(om.title).toBeVisible();
+    await expect(om.modalText).toHaveText(MODAL_TEXT);
 
     await use(om);
   },
@@ -23,16 +24,13 @@ const test = base.extend<Fixture>({
 test.describe("Onboarding Modal Popup page tests", () => {
   test("Close modal popup if displayed and assert the message", async ({ om }) => {
     const isChecked = await om.popupButton.isChecked();
-    console.log(isChecked);
 
     if (isChecked) {
       await expect(om.modalText).toBeInViewport();
-      await expect(om.modalText).toHaveText(MODAL_TEXT);
       await om.popupButton.setChecked(true);
       await expect(om.title).toHaveText(AFTER_MODAL_TEXT);
-      return;
+    } else {
+      await expect(om.title).toHaveText(NO_MODAL_TEXT);
     }
-
-    await expect(om.title).toHaveText(NO_MODAL_TEXT);
   });
 });

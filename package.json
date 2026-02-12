@@ -21,6 +21,7 @@
     "test:fu": "playwright test tests/file-upload.spec.ts",
     "test:fd": "playwright test tests/file-download.spec.ts",
     "test:om": "playwright test tests/onboarding-modal.spec.ts",
+    "test:bt": "playwright test tests/budget-tracker.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
