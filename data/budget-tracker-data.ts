@@ -12,7 +12,6 @@ export const TEST_CASES: TestCase[] = [
       },
     ],
     total: "$100.00",
-    endCount: 1,
   },
   {
     entries: [
@@ -25,7 +24,6 @@ export const TEST_CASES: TestCase[] = [
       },
     ],
     total: "-$75.00",
-    endCount: 1,
   },
   {
     entries: [
@@ -40,12 +38,11 @@ export const TEST_CASES: TestCase[] = [
         date: "2024-12-26",
         description: "Income 2",
         type: "income",
-        amount: "25.50",
+        amount: "25.5",
         toDelete: false,
       },
     ],
     total: "$75.50",
-    endCount: 2,
   },
   {
     entries: [
@@ -65,7 +62,6 @@ export const TEST_CASES: TestCase[] = [
       },
     ],
     total: "-$30.75",
-    endCount: 2,
   },
   {
     entries: [
@@ -106,7 +102,6 @@ export const TEST_CASES: TestCase[] = [
       },
     ],
     total: "$85.00",
-    endCount: 5,
   },
   {
     entries: [
@@ -114,39 +109,38 @@ export const TEST_CASES: TestCase[] = [
         date: "2025-03-01",
         description: "Expense To Keep",
         type: "expense",
-        amount: "20.00",
+        amount: "20",
         toDelete: false,
       },
       {
         date: "2025-03-02",
         description: "Expense To Delete",
         type: "expense",
-        amount: "40.00",
+        amount: "40",
         toDelete: true,
       },
       {
         date: "2025-03-03",
         description: "Income To Keep 1",
         type: "income",
-        amount: "30.00",
+        amount: "30",
         toDelete: false,
       },
       {
         date: "2025-03-04",
         description: "Income To Delete",
         type: "income",
-        amount: "50.00",
+        amount: "50",
         toDelete: true,
       },
       {
         date: "2025-03-05",
         description: "Income To Keep 2",
         type: "income",
-        amount: "25.00",
+        amount: "25",
         toDelete: false,
       },
     ],
     total: "$35.00",
-    endCount: 3,
   },
 ];

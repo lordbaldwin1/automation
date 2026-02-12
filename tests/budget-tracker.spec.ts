@@ -13,7 +13,6 @@ export type Entry = {
 export type TestCase = {
   entries: Entry[];
   total: string;
-  endCount: number;
 };
 
 type Fixture = {
@@ -30,8 +29,8 @@ const test = base.extend<Fixture>({
 });
 
 test.describe("Budget Tracker Page Tests", () => {
-  TEST_CASES.forEach(({ entries, total, endCount }) => {
-    test(`${entries.length} entries, with total: ${total} and end entry count: ${endCount}`, async ({ bt, page }) => {
+  TEST_CASES.forEach(({ entries, total }) => {
+    test(`${entries.length} entries, with total: ${total}`, async ({ bt, page }) => {
       for (const entry of entries) {
         await bt.addRecord(entry);
       }
@@ -42,12 +41,13 @@ test.describe("Budget Tracker Page Tests", () => {
         }
       }
 
-      await expect(bt.entryRows).toHaveCount(endCount);
+      const remainingEntries = entries.filter((entry) => entry.toDelete === false);
+      await bt.validateRecords(remainingEntries);
       await expect(bt.total).toHaveText(total);
 
       await page.reload();
 
-      await expect(bt.entryRows).toHaveCount(endCount);
+      await bt.validateRecords(remainingEntries);
       await expect(bt.total).toHaveText(total);
     });
   })

@@ -55,4 +55,25 @@ export class BudgetTrackerPage {
     const delButton = row.getByRole("button", { name: "✕" });
     await delButton.click();
   }
+
+  async validateRecords(entries: Entry[]) {
+    await expect(this.entryRows).toHaveCount(entries.length);
+
+    for (let i = 0; i < (await this.entryRows.count()); i++) {
+      await expect(this.entryRows.nth(i)).toBeVisible();
+      
+      const entry = entries[i]!;
+      const row = this.entryRows.nth(i);
+
+      const dateInput = row.locator(".input.input-date");
+      const descriptionInput = row.locator(".input.input-description");
+      const typeSelect = row.locator(".input.input-type");
+      const amountInput = row.locator(".input.input-amount");
+
+      await expect(dateInput).toHaveValue(entry.date);
+      await expect(descriptionInput).toHaveValue(entry.description);
+      await expect(typeSelect).toHaveValue(entry.type);
+      await expect(amountInput).toHaveValue(entry.amount);
+    }
+  }
 }
