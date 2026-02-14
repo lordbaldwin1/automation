@@ -24,6 +24,7 @@
     "test:bt": "playwright test tests/budget-tracker.spec.ts",
     "test:cm": "playwright test tests/context-menu.spec.ts",
     "test:mh": "playwright test tests/mouse-hover.spec.ts",
+    "test:g": "playwright test tests/geolocation.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {

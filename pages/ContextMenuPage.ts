@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from "@playwright/test";
+import { type Locator, type Page } from "@playwright/test";
 
 // click on each menu and sub-menu item and assert the message
 export class ContextMenuPage {
