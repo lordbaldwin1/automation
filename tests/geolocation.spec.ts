@@ -15,13 +15,12 @@ const test = base.extend<Fixture>({
 
 test.describe("Geolocation Page Tests", () => {
   test("browser location longitude: -122.03118 and latitude: 37.33182 shows Cupertino", async ({ g, context }) => {
-    await context.grantPermissions(["geolocation"]);
-    await context.setGeolocation({ longitude: -122.03118, latitude: 37.33182 });
+    await g.setLocation(context, -122.03118, 37.33182);
 
     await expect(g.locationInfo).toHaveText("Click on the button to get your current location");
-    await expect(g.getLocationButton).toBeVisible();
 
-    await g.getLocationButton.click();
+    await g.getLocation();
+    
     await expect(g.locationInfo).toHaveText("Cupertino, United States");
   });
 });
