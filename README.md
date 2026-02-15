@@ -2,6 +2,9 @@
 
 Playwright test suite for [qaplayground.dev](https://qaplayground.dev). Uses Bun and heavily relies on POM and fixtures.
 
+- **Page objects:** `pages/`
+- **Tests:** `tests/`
+
 ## Running Tests
 
 **Full suite:**
