@@ -26,6 +26,7 @@
     "test:mh": "playwright test tests/mouse-hover.spec.ts",
     "test:g": "playwright test tests/geolocation.spec.ts",
     "test:nm": "playwright test tests/navigation-menu.spec.ts",
+    "test:rc": "playwright test tests/redirect-chain.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
