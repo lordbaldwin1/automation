@@ -27,6 +27,8 @@
     "test:g": "playwright test tests/geolocation.spec.ts",
     "test:nm": "playwright test tests/navigation-menu.spec.ts",
     "test:rc": "playwright test tests/redirect-chain.spec.ts",
+    "test:f": "playwright test tests/fetch.spec.ts",
+    "test:qr": "playwright test tests/qr-code-generator.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
