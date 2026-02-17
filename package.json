@@ -30,6 +30,7 @@
     "test:f": "playwright test tests/fetch.spec.ts",
     "test:qr": "playwright test tests/qr-code-generator.spec.ts",
     "test:ci": "playwright test tests/changeable-iframe.spec.ts",
+    "test:rr": "playwright test tests/rating-range-slider.spec.ts",
     "codegen": "playwright codegen"
   },
   "devDependencies": {
